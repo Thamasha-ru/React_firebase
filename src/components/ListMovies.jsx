@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import { FirebaseApp } from 'firebase/app'
+// import { FirebaseApp } from 'firebase/app'
 
 //import React, { Components }  from 'react';
 import {collection, getDocs} from 'firebase/firestore'
-import { db } from ' ../lib/init-firebase'
+import db from '../lib/init-firebase'
 import { useEffect } from 'react'
 
 // import firebase from "firebase/compat/app"
