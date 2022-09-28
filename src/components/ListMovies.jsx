@@ -18,23 +18,15 @@ export default function ListMovies(){
         getmovies()
     },[])
 
-    useEffect(() => {
-        console.log(movies)
-    },[movies])
+    // useEffect(() => {
+    //     console.log(movies)
+    // },[movies])
 
-    function getmovies() {
+    async function getmovies() {
         const moviecollectionRef = collection(db,'movies')
-        getDocs(moviecollectionRef)
-        .then(response=>{
-            console.log(response)
-            const movs = response.docs.map(doc =>({
-                data:doc.data(),
-                id:doc.id,
-            }))
-            setMovies(movs)
-
-        })
-        .catch(error=>console.log(error.message))
+        const movieSnapshot = await getDocs(moviecollectionRef);
+        const movies = movieSnapshot.docs.map(doc => doc.data());
+        setMovies(movies)
     }
     return (
         <div>
@@ -42,7 +34,7 @@ export default function ListMovies(){
             <button onClick={() => getmovies()}>Resfresh movies</button>
             <ul>
                 {movies.map(movie => (
-                    <li key={movie.id}>{movie.data.name}</li>
+                    <li key={movie.name}>{movie.name}</li>
                 ))}
 
             </ul>
